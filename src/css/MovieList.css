@@ -1,0 +1,43 @@
+.movieList{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.listName{
+    font-size: 50px;
+    margin: 20px 0;
+}
+
+.movie{
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.movie a{
+    text-decoration: none;
+}
+
+.movieImg{
+    display: block;
+    width: 290px;
+    height: 435px;
+    margin-bottom: 40px;
+}
+
+.loadMore{
+    text-decoration: none;
+    min-height: 50px;
+    display: block;
+    text-align: center;
+    font-size: 42px;
+    color: #fff;
+    background-color: #16d47b;
+    margin: 42px 0;
+    padding: 20px;
+}
