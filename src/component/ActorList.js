@@ -27,18 +27,6 @@ function ActorList({actorData})
         else return actorImg.slice(0,4);
     } 
 
-    // 펼치기 버튼
-    const showBtn = ()=>{
-        if(actorImg.length < 4)
-        {
-            return ''
-        }
-        else
-        {
-            return <a  onClick={onShowAll}>showAll</a>
-        }
-    }
-
     // 펼치기 toggle
     const onShowAll = ()=>{
         if(!showAll){
@@ -55,7 +43,12 @@ function ActorList({actorData})
                     Actors
                 </div>
                 <div>
-                    {showBtn()}
+                    {actorImg.length > 5 &&
+                    <div className="showAll">
+                        <span>showAll</span>
+                        <input onClick={onShowAll} type="checkbox"/>
+                    </div>
+                    }
                 </div>
             </div>
             
