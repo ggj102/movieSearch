@@ -9,7 +9,7 @@
 }
 
 .actorUi{
-    margin: 0;
+    margin: 20px 0 0 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
@@ -29,6 +29,10 @@
 .actorUi li:nth-child(4n+4)
 {
     margin-right: 0;
+}
+
+.showAll{
+    margin-left: 20px;
 }
 
 .actorImg{

@@ -51,7 +51,6 @@ function ActorList({actorData})
                     }
                 </div>
             </div>
-            
             <ul className = "actorUi">
             {!showAll ? noShowAll() : actorImg}
             </ul>

@@ -20,14 +20,13 @@ function DetailPage({match})
     //detailPage로 가져오는 배우관련 data, 상세내용 data
     useEffect(()=>{
         Axios.get("https://api.themoviedb.org/3/movie/"+match.params.id+"/credits?api_key=1226d6349208c984366b4a0625201d6b&language=ko").then((response)=>{
-            console.log("credits", response.data);
                 setActorData(response.data.cast)})
+                
         Axios.get("https://api.themoviedb.org/3/movie/"+match.params.id+"?api_key=1226d6349208c984366b4a0625201d6b&language=ko").then((response)=>{
-            console.log("detail", response.data);
             setDetailData(response.data);
             setGenres(response.data.genres);
         })
-    },[])
+    },[match.params.id])
 
     // detailData에서 time값을 가져와 시간으로 환산함
     const timeCal = ()=>{
@@ -80,10 +79,9 @@ function DetailPage({match})
              <p>{original_title}</p>
             </div>
         </div>
-        
         <div className="info"  style={{backgroundImage:"url(http://image.tmdb.org/t/p/w1280"+backdrop_path+")"}}>
             <div className = "movieIntroduce">
-                <img className="poster" src={"http://image.tmdb.org/t/p/w500"+poster_path}/>
+                <img className="poster" src={"http://image.tmdb.org/t/p/w500"+poster_path} alt="img"/>
                 <div className = "textPart">
                     <div className="movieTitle">{original_title}({status})</div>
                     <div>
@@ -108,21 +106,21 @@ function DetailPage({match})
                         <div>디렉터명</div>
                     </div>
                 </div>
-                <img className="filmMark" src={filmMark}/>
+                <img className="filmMark" src={filmMark} alt="img"/>
             </div>
         </div>
         <div className="info2Position">
             <div className ="info2">
                 <div className="info2Text">
-                    <img className="info2Img" src={timeImg}/>
+                    <img className="info2Img" src={timeImg} alt="img"/>
                     Running Time: {timeCal()}
                 </div>
                 <div className="info2Text">
-                    <img className="info2Img" src={budgetImg}/>
+                    <img className="info2Img" src={budgetImg} alt="img"/>
                     Budget: ${budget}
                 </div>
                 <div className="info2Text">
-                    <img className="info2Img" src={revenueImg}/>
+                    <img className="info2Img" src={revenueImg} alt="img"/>
                     Revenue: ${revenue}
                 </div>
             </div>

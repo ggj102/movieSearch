@@ -9,7 +9,6 @@ function Main()
 {
     const [input, setInput] = useState('');
     const [movieData, setMovieData] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [pageNum, setPageNum]= useState(0);
     const [totalPage, setTotalPage] = useState(0);
     const [menuState, setMenuState] = useState("popular");
@@ -26,24 +25,20 @@ function Main()
 
     // 기본 mainData와 searchData를 조건에 따라 가져오게 함
     useEffect(()=>{
-        setLoading(true);
-        console.log(input);
         if(input === "")
         {
             Axios.get("https://api.themoviedb.org/3/movie/"+menuState+"?api_key=1226d6349208c984366b4a0625201d6b&language=ko&page="+(pageNum+1)).then((response)=>{
-                console.log(response.data);
                     setMovieData(response.data.results)
                     setTotalPage(response.data.total_pages);
                     setBackdropData(response.data.results[0])
-                    }).then(()=>{setLoading(false)});
+                    });
         }
         else
         {
             Axios.get("https://api.themoviedb.org/3/search/movie?api_key=1226d6349208c984366b4a0625201d6b&language=ko&query="+input+"&page="+(pageNum+1)).then((response)=>{
-            console.log(response.data);
                 setMovieData(response.data.results)
                 setTotalPage(response.data.total_pages);
-                }).then(()=>{setLoading(false)});
+                });
         }
     },[input,pageNum,menuState])
 
@@ -91,7 +86,7 @@ function Main()
         setPageNum(num);
    }
 
-   // pagination의 숫자 button을 활성화 함
+   // pagination의 숫자 button을 구성함
    // pageNum(State)을 기준으로 페이지의 범위를 결정함
    const pageTag = ()=>{
         const tagArr =[];
@@ -102,11 +97,9 @@ function Main()
         {
             lastNum = totalPage;
         }
-        console.log(totalPage);
-        console.log(lastNum);
         for(let i = startNum; i< lastNum; i++)
         {   
-            tagArr.push(<a href="#" className={pageNum === i ?"pageFocus" :"pageBtn"} onClick={()=>{pageNumBtn(i)}}>{i+1}</a>)
+            tagArr.push(<a href="#pageBtn" className={pageNum === i ?"pageFocus" :"pageBtn"} onClick={()=>{pageNumBtn(i)}}>{i+1}</a>)
         }
         return tagArr;
     }
@@ -118,11 +111,11 @@ function Main()
    const pagination = ()=>{
        return(
         <div className="paging">
-            <a href="#" className="pageBtn"  onClick={tenpreviewBtn}>{arrowArr[0]}</a>
-            <a href="#" className="pageBtn" onClick={previewBtn}>{arrowArr[1]}</a>
+            <a href="#pageBtn" className="pageBtn"  onClick={tenpreviewBtn}>{arrowArr[0]}</a>
+            <a href="#pageBtn" className="pageBtn" onClick={previewBtn}>{arrowArr[1]}</a>
             {pageTag()}
-            <a href="#" className="pageBtn" onClick={nextBtn}>{arrowArr[2]}</a>
-            <a href="#" className="pageBtn" onClick={tenNextBtn} >{arrowArr[3]}</a>
+            <a href="#pageBtn" className="pageBtn" onClick={nextBtn}>{arrowArr[2]}</a>
+            <a href="#pageBtn" className="pageBtn" onClick={tenNextBtn} >{arrowArr[3]}</a>
         </div>
        )
    }
@@ -139,10 +132,10 @@ function Main()
         {
             return(        
          <div className="menuTab">
-             <a href="#" className={menuState === "popular" ?"tabTextFocus" : "tabText"} onClick={()=>{onClickMenuTab("popular")}}>Popular</a>
-             <a href="#" className={menuState === "now_playing" ?"tabTextFocus" : "tabText"} onClick={()=>{onClickMenuTab("now_playing")}}>Now playing</a>
-             <a href="#" className={menuState === "top_rated" ?"tabTextFocus" : "tabText"} onClick={()=>{onClickMenuTab("top_rated")}}>Top rated</a>
-             <a href="#" className={menuState === "upcoming" ?"tabTextFocus" : "tabText"} onClick={()=>{onClickMenuTab("upcoming")}}>Upcoming</a>
+             <a href="#category" className={menuState === "popular" ?"tabTextFocus" : "tabText"} onClick={()=>{onClickMenuTab("popular")}}>Popular</a>
+             <a href="#category" className={menuState === "now_playing" ?"tabTextFocus" : "tabText"} onClick={()=>{onClickMenuTab("now_playing")}}>Now playing</a>
+             <a href="#category" className={menuState === "top_rated" ?"tabTextFocus" : "tabText"} onClick={()=>{onClickMenuTab("top_rated")}}>Top rated</a>
+             <a href="#category" className={menuState === "upcoming" ?"tabTextFocus" : "tabText"} onClick={()=>{onClickMenuTab("upcoming")}}>Upcoming</a>
          </div>)
         }
     }
@@ -150,7 +143,6 @@ function Main()
     return(
     <div className="main">
         <Header/>
-        {console.log(backdrop_path)}
         <div className="mainBackDrop" style={{backgroundImage:"url(http://image.tmdb.org/t/p/w1280"+backdrop_path+")"}}>
             <div className="backDropContent">
                 <div className="mainBackDropText">
@@ -161,7 +153,7 @@ function Main()
         </div>
         <div className="searchBar">
             <div className="searchBarContent">
-                <img className="searchImg" src={SearchImg}/>
+                <img className="searchImg" src={SearchImg} alt="img"/>
                 <input className="searchInput" placeholder="Search" onChange={onChange} value={input}/>
             </div>
         </div>

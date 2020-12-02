@@ -9,7 +9,7 @@ function MovieList({movieData})
     const movieImg = movieData.map((obj)=>{
         return(
             <li>
-             <NavLink to={"/detail/"+obj.id} href="#">
+             <NavLink to={"/detail/"+obj.id}>
                 <img  className="movieImg" src={obj.poster_path ? "http://image.tmdb.org/t/p/w500"+obj.poster_path : noImage} alt="img"/>
              </NavLink>    
             </li>

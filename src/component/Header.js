@@ -9,8 +9,8 @@ function Header()
     return(
         <div className='header'>
             <div className="logoDiv">
-                <NavLink to="/"><img className="movieLogo" src={Logo} /></NavLink> 
-                <img className = "dbLogo" src={DbLogo} />
+                <NavLink to="/"><img className="movieLogo" src={Logo} alt=""/></NavLink> 
+                <img className = "dbLogo" src={DbLogo} alt="img"/>
             </div>
         </div>
     )
