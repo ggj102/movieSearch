@@ -1,0 +1,67 @@
+.actorList{
+    margin: 0;
+    padding: 0;
+}
+
+.listName{
+    font-size: 50px;
+    margin: 20px 0;
+}
+
+.actorUi{
+    margin: 20px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.actorUi li{
+    width: calc((100% - 120px) / 4);
+    margin: 0 40px 40px 0;
+    background-color: #353535;
+    max-height: 430px;
+    overflow: hidden;
+    color: #fff;
+}
+
+.actorUi li:nth-child(4n+4)
+{
+    margin-right: 0;
+}
+
+.showAll{
+    margin-left: 20px;
+}
+
+.actorImg{
+    width: 40%;
+    float: left;
+    box-sizing: border-box;
+    height: auto;
+}
+
+.movieText{
+    margin: 10px 0 0 20px;
+    float: left;
+}
+
+.actorName{
+    font-size: 22px;
+    color: #fff;
+    margin: 10px 20px;
+    width: 40%;
+    float: left;
+    box-sizing: border-box;
+}
+
+.actorCharacter{
+    font-size: 18px;
+    color: #fff;
+    float: left;
+    margin: 0 20px 10px;
+    width: 40%;
+    box-sizing: border-box;
+}
+
