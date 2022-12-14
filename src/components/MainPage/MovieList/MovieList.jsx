@@ -15,7 +15,7 @@ import CategoryTab from "../CategoryTab";
 
 function MovieList({ movieData, setMovieData }) {
   const [searchValue, setSearchValue] = useState("");
-  const [categoryName, setCategoryName] = useState("");
+  const [categoryName, setCategoryName] = useState("Popular");
   const [currentPageNum, setCurrentPageNum] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [currentTab, setCurrentTab] = useState("popular");
