@@ -1,14 +1,17 @@
-import React from 'react';
-import './App.css';
-import { Route } from 'react-router-dom';
-import Main from './component/Main';
-import DetailPage from './component/DetailPage';
+import React from "react";
+import "./App.css";
+import { Route } from "react-router-dom";
+
+import Header from "./components/Header";
+import MainPage from "./components/MainPage";
+import DetailPage from "./components/DetailPage";
 
 function App() {
   return (
     <>
-      <Route exact path="/" component = {Main}/>
-      <Route exact path="/detail/:id" component = {DetailPage}/>
+      <Header />
+      <Route exact path="/" component={MainPage} />
+      <Route exact path="/detail/:id" component={DetailPage} />
     </>
   );
 }
