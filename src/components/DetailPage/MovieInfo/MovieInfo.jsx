@@ -41,13 +41,19 @@ export default function MovieInfo({ genres, data }) {
       <div
         className="info"
         style={{
-          backgroundImage: `url(http://image.tmdb.org/t/p/w1280${backdrop_path}`,
+          backgroundImage: `${
+            backdrop_path
+              ? `url(http://image.tmdb.org/t/p/w1280${backdrop_path}`
+              : ""
+          }`,
         }}
       >
         <div className="movieIntroduce">
           <img
             className="poster"
-            src={`http://image.tmdb.org/t/p/w500${poster_path}`}
+            src={`${
+              poster_path ? `http://image.tmdb.org/t/p/w500${poster_path}` : ""
+            }`}
             alt="img"
           />
           <div className="textPart">
@@ -62,7 +68,7 @@ export default function MovieInfo({ genres, data }) {
               <div className="text">GENRES</div>
               {genres.map((val, idx) => {
                 return (
-                  <span key={idx} className="genresText">
+                  <span key={`genres${idx}`} className="genresText">
                     {val.name}
                   </span>
                 );

@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../../../css/MovieList.css";
-
-import {
-  axiosGetMovieData,
-  axiosGetSearchMovieData,
-} from "../../../utils/axios";
 
 import noImage from "../../../img/noImage.png";
 import SearchImg from "../../../img/searchImg.png";
@@ -13,12 +8,22 @@ import SearchImg from "../../../img/searchImg.png";
 import Pagination from "../Pagination";
 import CategoryTab from "../CategoryTab";
 
-function MovieList({ movieData, setMovieData }) {
-  const [searchValue, setSearchValue] = useState("");
+import indexStore from "../../../modules";
+
+function MovieList() {
+  const { MovieStore } = indexStore();
+  const {
+    MovieObservable,
+    setMovieData,
+    setCurrentPageNum,
+    setSearchValue,
+    setCurrentTab,
+  } = MovieStore;
+
+  const { movieData, currentPageNum, totalPage, searchValue, currentTab } =
+    MovieObservable;
+
   const [categoryName, setCategoryName] = useState("Popular");
-  const [currentPageNum, setCurrentPageNum] = useState(0);
-  const [totalPage, setTotalPage] = useState(0);
-  const [currentTab, setCurrentTab] = useState("popular");
 
   const CategoryNameConv = (tabName) => {
     const underbar = tabName.replace("_", " ");
@@ -37,20 +42,6 @@ function MovieList({ movieData, setMovieData }) {
     setCurrentTab(name);
     CategoryNameConv(name);
   };
-
-  useEffect(() => {
-    const pageNum = currentPageNum + 1;
-
-    const getData =
-      searchValue === ""
-        ? axiosGetMovieData(currentTab, pageNum)
-        : axiosGetSearchMovieData(searchValue, pageNum);
-
-    getData.then((res) => {
-      setMovieData(res.data.results);
-      setTotalPage(res.data.total_pages);
-    });
-  }, [searchValue, currentPageNum, currentTab, setMovieData]);
 
   return (
     <>
@@ -82,7 +73,7 @@ function MovieList({ movieData, setMovieData }) {
             const { id, poster_path } = val;
 
             return (
-              <li key={idx}>
+              <li key={`movieData${idx}`}>
                 <NavLink to={"/detail/" + id}>
                   <img
                     className="movieImg"

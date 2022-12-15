@@ -36,7 +36,7 @@ function ActorList({ data }) {
           const { profile_path, name, character } = val;
 
           return (
-            <li key={idx}>
+            <li key={`actorList${idx}`}>
               <img
                 className="actorImg"
                 src={
