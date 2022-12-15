@@ -61,9 +61,10 @@ export default function Pagination({
       <a href="#pageBtn" className="pageBtn" onClick={previewBtn}>
         {"<"}
       </a>
-      {pageNumArr.map((val) => {
+      {pageNumArr.map((val, idx) => {
         return (
           <a
+            key={`pageNum${idx}`}
             href="#pageBtn"
             className={`page${currentPageNum === val ? "Focus" : "Btn"}`}
             onClick={() => setCurrentPageNum(val)}
